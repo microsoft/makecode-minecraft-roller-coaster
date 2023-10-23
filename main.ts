@@ -216,7 +216,7 @@ namespace rollerCoasterBuilder {
         for (let currentHeight = 0; currentHeight <= height; currentHeight++) {
             for (let currentHoriz = 0; currentHoriz < horizSpace; currentHoriz++) {
                 if (unpoweredBlocksPlaced >= 8) {
-                    rollerCoasterBuilder.addPoweredRail()
+                    addPoweredRail()
                     unpoweredBlocksPlaced = 0
                 } else {
                     addUnpoweredPoweredRail()
@@ -236,10 +236,10 @@ namespace rollerCoasterBuilder {
                 // Only needed on first descent level since the rest have the downhill to speed up.
                 let powerAtStart = currentDescent == 0 && horizSpace >= powerInterval;
                 if ((currentHoriz + (powerAtStart ? 0 : 1)) % powerInterval == 0) {
-                    rollerCoasterBuilder.addPoweredRail()
+                    addPoweredRail()
                 }
                 else {
-                    rollerCoasterBuilder.addRail()
+                    addRail()
                 }
                 builder.move(FORWARD, 1)
             }
@@ -253,12 +253,12 @@ namespace rollerCoasterBuilder {
     //% block="add $direction turn"
     //% blockId="rcbAddTurn" weight=85
     export function addTurn(direction: TurnDirection) {
-        rollerCoasterBuilder.addRail();
+        addRail();
         builder.move(FORWARD, 1);
-        rollerCoasterBuilder.addRail();
+        addRail();
         builder.turn(direction);
         builder.move(FORWARD, 1);
-        rollerCoasterBuilder.addRail();
+        addRail();
         builder.move(FORWARD, 1);
     }
 
@@ -275,13 +275,13 @@ namespace rollerCoasterBuilder {
             }
 
             if (heightChange == 0) return; // Error
-            rollerCoasterBuilder.addRamp(verticalDirection, heightChange, 1)
+            addRamp(verticalDirection, heightChange, 1)
             totalHeightDiff += heightChange
 
             if (verticalDirection == RcbVerticalDirection.Up) {
                 // Unpower the final rail in the ramp, so it can turn
                 builder.move(BACK, 1)
-                rollerCoasterBuilder.addRail()
+                addRail()
             }
 
             // Turn (unless we're done, in which case allow track to continue straight)
