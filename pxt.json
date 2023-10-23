@@ -1,7 +1,7 @@
 {
     "name": "Roller Coaster Builder",
-    "version": "0.1.47",
-    "description": "",
+    "version": "0.1.49",
+    "description": "Build minecart roller coasters using code, then ride them!",
     "dependencies": {
         "core": "*",
         "builder": "*"

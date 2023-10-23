@@ -8,22 +8,22 @@ This repository can be added as an **extension** in MakeCode.
 * open [https://minecraft.makecode.com/](https://minecraft.makecode.com/)
 * click on **New Project**
 * click on **Extensions** under the gearwheel menu
-* search for **https://github.com/thsparks/roller-coaster-builder** and import
+* search for **https://github.com/microsoft/makecode-minecraft-roller-coaster** and import
 
-## Edit this project ![Build status badge](https://github.com/thsparks/roller-coaster-builder/workflows/MakeCode/badge.svg)
+## Edit this project ![Build status badge](https://github.com/microsoft/makecode-minecraft-roller-coaster/workflows/MakeCode/badge.svg)
 
 To edit this repository in MakeCode.
 
 * open [https://minecraft.makecode.com/](https://minecraft.makecode.com/)
 * click on **Import** then click on **Import URL**
-* paste **https://github.com/thsparks/roller-coaster-builder** and click import
+* paste **https://github.com/microsoft/makecode-minecraft-roller-coaster** and click import
 
 ## Blocks preview
 
-This image shows the blocks code from the last commit in master.
+This image shows the blocks code from the last commit in main.
 This image may take a few minutes to refresh.
 
-![A rendered view of the blocks](https://github.com/thsparks/roller-coaster-builder/raw/master/.github/makecode/blocks.png)
+![A rendered view of the blocks](https://github.com/microsoft/makecode-minecraft-roller-coaster/raw/main/.github/makecode/blocks.png)
 
 #### Metadata (used for search, rendering)
 

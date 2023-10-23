@@ -184,14 +184,12 @@ namespace rollerCoasterBuilder {
     //% blockId="rcbAddStraightLine" weight=95
     export function addStraightLine(length: number, powerLevel: RcbPowerLevel = RcbPowerLevel.Normal) {
         for (let index = 0; index < length; index++) {
-            if (powerLevel != RcbPowerLevel.No && index % powerInterval == 0) {
+            if (powerLevel !== RcbPowerLevel.No && index % powerInterval === 0) {
                 addPoweredRail()
+            } else if (powerLevel === RcbPowerLevel.Full) {
+                addUnpoweredPoweredRail()
             } else {
-                if (powerLevel == RcbPowerLevel.Full) {
-                    addUnpoweredPoweredRail();
-                } else {
-                    addRail()
-                }
+                addRail()
             }
             builder.move(FORWARD, 1)
         }
@@ -203,7 +201,7 @@ namespace rollerCoasterBuilder {
     //% horizSpace.min=1
     //% blockId="rcbAddRamp" weight=90
     export function addRamp(direction: RcbVerticalDirection, distance: number, horizSpace: number = 1) {
-        if (direction == RcbVerticalDirection.Up) {
+        if (direction === RcbVerticalDirection.Up) {
             rampUp(distance, horizSpace);
         }
         else {
@@ -216,7 +214,7 @@ namespace rollerCoasterBuilder {
         for (let currentHeight = 0; currentHeight <= height; currentHeight++) {
             for (let currentHoriz = 0; currentHoriz < horizSpace; currentHoriz++) {
                 if (unpoweredBlocksPlaced >= 8) {
-                    rollerCoasterBuilder.addPoweredRail()
+                    addPoweredRail()
                     unpoweredBlocksPlaced = 0
                 } else {
                     addUnpoweredPoweredRail()
@@ -234,12 +232,12 @@ namespace rollerCoasterBuilder {
             for (let currentHoriz = 0; currentHoriz < horizSpace; currentHoriz++) {
                 // Place powered at start only if needed, then every powerInterval blocks.
                 // Only needed on first descent level since the rest have the downhill to speed up.
-                let powerAtStart = currentDescent == 0 && horizSpace >= powerInterval;
-                if ((currentHoriz + (powerAtStart ? 0 : 1)) % powerInterval == 0) {
-                    rollerCoasterBuilder.addPoweredRail()
+                let powerAtStart = currentDescent === 0 && horizSpace >= powerInterval;
+                if ((currentHoriz + (powerAtStart ? 0 : 1)) % powerInterval === 0) {
+                    addPoweredRail()
                 }
                 else {
-                    rollerCoasterBuilder.addRail()
+                    addRail()
                 }
                 builder.move(FORWARD, 1)
             }
@@ -253,12 +251,12 @@ namespace rollerCoasterBuilder {
     //% block="add $direction turn"
     //% blockId="rcbAddTurn" weight=85
     export function addTurn(direction: TurnDirection) {
-        rollerCoasterBuilder.addRail();
+        addRail();
         builder.move(FORWARD, 1);
-        rollerCoasterBuilder.addRail();
+        addRail();
         builder.turn(direction);
         builder.move(FORWARD, 1);
-        rollerCoasterBuilder.addRail();
+        addRail();
         builder.move(FORWARD, 1);
     }
 
@@ -269,19 +267,19 @@ namespace rollerCoasterBuilder {
     export function addSpiral(verticalDirection: RcbVerticalDirection, turnDirection: TurnDirection, height: number = 10, width: number = 3) {
         let totalHeightDiff = 0
         while (totalHeightDiff < height) {
-            let heightChange = verticalDirection == RcbVerticalDirection.Up && totalHeightDiff == 0 ? width - 1 : width - 2
+            let heightChange = verticalDirection === RcbVerticalDirection.Up && totalHeightDiff === 0 ? width - 1 : width - 2
             if (totalHeightDiff + heightChange > height) {
                 heightChange = height - totalHeightDiff
             }
 
-            if (heightChange == 0) return; // Error
-            rollerCoasterBuilder.addRamp(verticalDirection, heightChange, 1)
+            if (heightChange === 0) return; // Error
+            addRamp(verticalDirection, heightChange, 1)
             totalHeightDiff += heightChange
 
-            if (verticalDirection == RcbVerticalDirection.Up) {
+            if (verticalDirection === RcbVerticalDirection.Up) {
                 // Unpower the final rail in the ramp, so it can turn
                 builder.move(BACK, 1)
-                rollerCoasterBuilder.addRail()
+                addRail()
             }
 
             // Turn (unless we're done, in which case allow track to continue straight)
@@ -289,7 +287,7 @@ namespace rollerCoasterBuilder {
                 builder.turn(turnDirection)
             }
 
-            if (verticalDirection == RcbVerticalDirection.Up) {
+            if (verticalDirection === RcbVerticalDirection.Up) {
                 builder.move(FORWARD, 1)
             }
         }
