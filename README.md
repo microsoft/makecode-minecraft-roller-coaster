@@ -1,5 +1,4 @@
-
-> Open this page at [https://thsparks.github.io/roller-coaster-builder/](https://thsparks.github.io/roller-coaster-builder/)
+MakeCode Extension for Minecraft Education that allows you to create minecart roller coasters using code, then ride them!
 
 ## Use as Extension
 
