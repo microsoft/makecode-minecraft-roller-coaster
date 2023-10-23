@@ -269,7 +269,7 @@ namespace rollerCoasterBuilder {
     export function addSpiral(verticalDirection: RcbVerticalDirection, turnDirection: TurnDirection, height: number = 10, width: number = 3) {
         let totalHeightDiff = 0
         while (totalHeightDiff < height) {
-            let heightChange = verticalDirection == RcbVerticalDirection.Up && totalHeightDiff == 0 ? width - 1 : width - 2
+            let heightChange = verticalDirection === RcbVerticalDirection.Up && totalHeightDiff === 0 ? width - 1 : width - 2
             if (totalHeightDiff + heightChange > height) {
                 heightChange = height - totalHeightDiff
             }
