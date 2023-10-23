@@ -186,14 +186,12 @@ namespace rollerCoasterBuilder {
     //% blockId="rcbAddStraightLine" weight=95
     export function addStraightLine(length: number, powerLevel: RcbPowerLevel = RcbPowerLevel.Normal) {
         for (let index = 0; index < length; index++) {
-            if (powerLevel != RcbPowerLevel.No && index % powerInterval == 0) {
+            if (powerLevel !== RcbPowerLevel.No && index % powerInterval == 0) {
                 addPoweredRail()
+            } else if (powerLevel === RcbPowerLevel.Full) {
+                addUnpoweredPoweredRail()
             } else {
-                if (powerLevel == RcbPowerLevel.Full) {
-                    addUnpoweredPoweredRail();
-                } else {
-                    addRail()
-                }
+                addRail()
             }
             builder.move(FORWARD, 1)
         }
