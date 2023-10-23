@@ -154,16 +154,14 @@ namespace rollerCoasterBuilder {
 
         // Button
         builder.move(UP, 1)
-        player.say(btn + ":" + btnAux)
         builder.place(blocks.blockWithData(btn, btnAux))
-
+    
         // Minecart
-        // builder.shift(0, -1, -1)
-        // builder.place(MINECART)
-        mobs.give(mobs.target(LOCAL_PLAYER), MINECART, 1)
+        builder.shift(0, -1, -1)
+        player.execute(`summon minecart ${builder.position().toString()}`)
 
         // Set builder location for next piece of track
-        builder.shift(3, -2, -1)
+        builder.shift(3, -1, 0)
     }
 
     //% block="place track end"
