@@ -13,8 +13,11 @@ enum RcbPowerLevel {
     No
 }
 
-//% color="#9C5F9B" block="Roller Coaster" icon="\uf3ff"
+//% color="#9C5F9B" block="Roller Coaster Test" icon="\uf3ff"
 namespace rollerCoasterBuilder {
+
+    let _coasterBuilder = new builder.Builder();
+
     let railBase = PLANKS_OAK
     let powerInterval = 5 // Keep between 1 and 8, else minecarts may stop between power
 
@@ -25,18 +28,18 @@ namespace rollerCoasterBuilder {
     //% block="add single rail to track"
     //% blockId="rcbAddRail" weight=65
     export function addRail() {
-        placeRailInternal(builder.position(), railBase, RAIL)
+        placeRailInternal(_coasterBuilder.position(), railBase, RAIL)
     }
 
     //% block="add single powered rail to track"
     //% blockId="rcbAddPoweredRail" weight=70
     export function addPoweredRail() {
-        placeRailInternal(builder.position(), REDSTONE_BLOCK, POWERED_RAIL)
+        placeRailInternal(_coasterBuilder.position(), REDSTONE_BLOCK, POWERED_RAIL)
     }
 
     // Intentionally not exposed, as it's a bit confusing...
     function addUnpoweredPoweredRail() {
-        placeRailInternal(builder.position(), railBase, POWERED_RAIL)
+        placeRailInternal(_coasterBuilder.position(), railBase, POWERED_RAIL)
     }
 
     function placeAirAbove(position: Position, start: number, dist: number) {
@@ -103,65 +106,65 @@ namespace rollerCoasterBuilder {
         let btn = WARPED_BUTTON
         let btnAux = getButtonAuxForDirection(direction)
 
-        builder.teleportTo(position)
-        builder.face(direction)
+        _coasterBuilder.teleportTo(position)
+        _coasterBuilder.face(direction)
 
         // Rails
         addUnpoweredPoweredRail()
-        builder.move(FORWARD, 1)
+        _coasterBuilder.move(FORWARD, 1)
         addUnpoweredPoweredRail()
-        builder.move(FORWARD, 1)
+        _coasterBuilder.move(FORWARD, 1)
         addRail()
 
         // Ramp
-        builder.move(RIGHT, 1)
-        builder.place(rampBlock)
-        placeAirAbove(builder.position(), 1, 3)
-        builder.move(BACK, 1)
-        builder.place(rampBlock)
-        placeAirAbove(builder.position(), 1, 3)
-        builder.move(BACK, 1)
-        builder.place(rampBlock)
-        placeAirAbove(builder.position(), 1, 3)
+        _coasterBuilder.move(RIGHT, 1)
+        _coasterBuilder.place(rampBlock)
+        placeAirAbove(_coasterBuilder.position(), 1, 3)
+        _coasterBuilder.move(BACK, 1)
+        _coasterBuilder.place(rampBlock)
+        placeAirAbove(_coasterBuilder.position(), 1, 3)
+        _coasterBuilder.move(BACK, 1)
+        _coasterBuilder.place(rampBlock)
+        placeAirAbove(_coasterBuilder.position(), 1, 3)
 
         // Non-Button Background
-        builder.move(BACK, 1)
-        builder.mark()
-        builder.move(LEFT, 1)
-        builder.raiseWall(nonBtnBkgBlock, 4)
+        _coasterBuilder.move(BACK, 1)
+        _coasterBuilder.mark()
+        _coasterBuilder.move(LEFT, 1)
+        _coasterBuilder.raiseWall(nonBtnBkgBlock, 4)
 
         // Btn Background
-        builder.move(LEFT, 1)
-        builder.mark()
-        builder.move(LEFT, 1)
-        builder.raiseWall(btnBkgBlock, 4)
-        builder.mark()
-        builder.move(FORWARD, 3)
-        builder.raiseWall(btnBkgBlock, 4)
-        builder.move(RIGHT, 1)
-        builder.place(btnBkgBlock)
-        placeAirAbove(builder.position(), 1, 3)
-        builder.move(BACK, 1)
-        builder.place(btnBkgBlock)
-        placeAirAbove(builder.position(), 1, 3)
-        builder.move(BACK, 1)
-        builder.place(btnBkgBlock)
-        placeAirAbove(builder.position(), 1, 3)
+        _coasterBuilder.move(LEFT, 1)
+        _coasterBuilder.mark()
+        _coasterBuilder.move(LEFT, 1)
+        _coasterBuilder.raiseWall(btnBkgBlock, 4)
+        _coasterBuilder.mark()
+        _coasterBuilder.move(FORWARD, 3)
+        _coasterBuilder.raiseWall(btnBkgBlock, 4)
+        _coasterBuilder.move(RIGHT, 1)
+        _coasterBuilder.place(btnBkgBlock)
+        placeAirAbove(_coasterBuilder.position(), 1, 3)
+        _coasterBuilder.move(BACK, 1)
+        _coasterBuilder.place(btnBkgBlock)
+        placeAirAbove(_coasterBuilder.position(), 1, 3)
+        _coasterBuilder.move(BACK, 1)
+        _coasterBuilder.place(btnBkgBlock)
+        placeAirAbove(_coasterBuilder.position(), 1, 3)
 
         // Redstone
-        builder.move(UP, 1)
-        builder.place(REDSTONE_WIRE)
+        _coasterBuilder.move(UP, 1)
+        _coasterBuilder.place(REDSTONE_WIRE)
 
         // Button
-        builder.move(UP, 1)
-        builder.place(blocks.blockWithData(btn, btnAux))
-    
+        _coasterBuilder.move(UP, 1)
+        _coasterBuilder.place(blocks.blockWithData(btn, btnAux))
+
         // Minecart
-        builder.shift(0, -1, -1)
-        player.execute(`summon minecart ${builder.position().toString()}`)
+        _coasterBuilder.shift(0, -1, -1)
+        player.execute(`summon minecart ${_coasterBuilder.position().toString()}`)
 
         // Set builder location for next piece of track
-        builder.shift(3, -1, 0)
+        _coasterBuilder.shift(3, -1, 0)
     }
 
     //% block="place track end"
@@ -171,11 +174,11 @@ namespace rollerCoasterBuilder {
     //% blockId="rcbPlaceEndTrack" weight=99
     export function placeTrackEnd() {
         addRail()
-        builder.move(FORWARD, 1)
-        builder.place(railBase)
-        builder.move(UP, 1)
-        builder.place(railBase)
-        builder.shift(1, -1, 0)
+        _coasterBuilder.move(FORWARD, 1)
+        _coasterBuilder.place(railBase)
+        _coasterBuilder.move(UP, 1)
+        _coasterBuilder.place(railBase)
+        _coasterBuilder.shift(1, -1, 0)
     }
 
     //% block="add straight line of length $length || with $powerLevel power"
@@ -191,7 +194,7 @@ namespace rollerCoasterBuilder {
             } else {
                 addRail()
             }
-            builder.move(FORWARD, 1)
+            _coasterBuilder.move(FORWARD, 1)
         }
     }
 
@@ -220,11 +223,11 @@ namespace rollerCoasterBuilder {
                     addUnpoweredPoweredRail()
                     unpoweredBlocksPlaced++
                 }
-                builder.move(FORWARD, 1)
+                _coasterBuilder.move(FORWARD, 1)
             }
-            builder.move(UP, 1);
+            _coasterBuilder.move(UP, 1);
         }
-        builder.move(DOWN, 1)
+        _coasterBuilder.move(DOWN, 1)
     }
 
     function rampDown(descentDistance: number, horizSpace: number) {
@@ -239,25 +242,25 @@ namespace rollerCoasterBuilder {
                 else {
                     addRail()
                 }
-                builder.move(FORWARD, 1)
+                _coasterBuilder.move(FORWARD, 1)
             }
-            builder.move(DOWN, 1)
+            _coasterBuilder.move(DOWN, 1)
         }
 
         // Undo the final down movement, since we didn't actually place a block.
-        builder.move(UP, 1)
+        _coasterBuilder.move(UP, 1)
     }
 
     //% block="add $direction turn"
     //% blockId="rcbAddTurn" weight=85
     export function addTurn(direction: TurnDirection) {
         addRail();
-        builder.move(FORWARD, 1);
+        _coasterBuilder.move(FORWARD, 1);
         addRail();
-        builder.turn(direction);
-        builder.move(FORWARD, 1);
+        _coasterBuilder.turn(direction);
+        _coasterBuilder.move(FORWARD, 1);
         addRail();
-        builder.move(FORWARD, 1);
+        _coasterBuilder.move(FORWARD, 1);
     }
 
     //% block="add spiral going $verticalDirection turning $turnDirection with width $width and height $height"
@@ -278,17 +281,17 @@ namespace rollerCoasterBuilder {
 
             if (verticalDirection === RcbVerticalDirection.Up) {
                 // Unpower the final rail in the ramp, so it can turn
-                builder.move(BACK, 1)
+                _coasterBuilder.move(BACK, 1)
                 addRail()
             }
 
             // Turn (unless we're done, in which case allow track to continue straight)
             if (totalHeightDiff != height) {
-                builder.turn(turnDirection)
+                _coasterBuilder.turn(turnDirection)
             }
 
             if (verticalDirection === RcbVerticalDirection.Up) {
-                builder.move(FORWARD, 1)
+                _coasterBuilder.move(FORWARD, 1)
             }
         }
     }
@@ -298,48 +301,48 @@ namespace rollerCoasterBuilder {
     //% blockId="rcbAddFreeFall" weight=75
     export function addFreeFall(height: number) {
         // Clear out free-fall area
-        let startPos = builder.position()
+        let startPos = _coasterBuilder.position()
         let cornerOne = undefined
         let cornerTwo = undefined
-        builder.move(UP, 2)
-        builder.mark()
+        _coasterBuilder.move(UP, 2)
+        _coasterBuilder.mark()
 
         if (waterProtection || lavaProtection) {
             // This is icky, but I don't know of a better way to get it relative to facing direction.
-            builder.shift(-1, 1, 1)
-            cornerOne = builder.position()
-            builder.shift(1, -1, -1)
+            _coasterBuilder.shift(-1, 1, 1)
+            cornerOne = _coasterBuilder.position()
+            _coasterBuilder.shift(1, -1, -1)
         }
 
-        builder.shift(2, -height - 2, 0)
+        _coasterBuilder.shift(2, -height - 2, 0)
 
         if (waterProtection || lavaProtection) {
-            builder.shift(1, -1, -1)
-            cornerTwo = builder.position()
-            builder.shift(-1, 1, 1)
+            _coasterBuilder.shift(1, -1, -1)
+            cornerTwo = _coasterBuilder.position()
+            _coasterBuilder.shift(-1, 1, 1)
         }
 
         replaceWaterAndLava(cornerOne, cornerTwo)
 
-        builder.fill(AIR)
-        builder.teleportTo(startPos)
+        _coasterBuilder.fill(AIR)
+        _coasterBuilder.teleportTo(startPos)
 
         // Create wall to stop cart from moving forwards once it's off the track
         addRail()
-        builder.move(FORWARD, 2)
-        builder.mark()
-        builder.move(UP, 2)
-        builder.fill(railBase, FillOperation.Keep)
+        _coasterBuilder.move(FORWARD, 2)
+        _coasterBuilder.mark()
+        _coasterBuilder.move(UP, 2)
+        _coasterBuilder.fill(railBase, FillOperation.Keep)
 
         // We need a bit of a ramp at the bottom to get moving again.
-        builder.move(BACK, 2)
-        builder.move(DOWN, height)
+        _coasterBuilder.move(BACK, 2)
+        _coasterBuilder.move(DOWN, height)
         addUnpoweredPoweredRail()
-        builder.move(FORWARD, 1)
-        builder.move(DOWN, 1)
+        _coasterBuilder.move(FORWARD, 1)
+        _coasterBuilder.move(DOWN, 1)
         addPoweredRail()
-        builder.move(FORWARD, 1)
-        builder.move(DOWN, 1)
+        _coasterBuilder.move(FORWARD, 1)
+        _coasterBuilder.move(DOWN, 1)
         addUnpoweredPoweredRail()
     }
 
