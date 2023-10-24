@@ -22,6 +22,9 @@ namespace rollerCoasterBuilder {
     let waterProtection = true
     let lavaProtection = true
 
+    let loopBackPosition: Position = undefined
+    let startingDirection: CompassDirection = undefined;
+
     //% block="add single rail to track"
     //% blockId="rcbAddRail" weight=65
     export function addRail() {
@@ -90,12 +93,17 @@ namespace rollerCoasterBuilder {
         }
     }
 
-    //% block="begin track at $position heading $direction"
+    //% block="begin track at $position heading $direction with looping $loop"
     //% position.shadow=minecraftCreatePosition
     //% direction.defl=CompassDirection.North
     //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbBeginTrack" weight=100
-    export function placeTrackStart(position: Position, direction: CompassDirection) {
+    export function placeTrackStart(position: Position, direction: CompassDirection, loop: boolean) {
+        if (loop) {
+            loopBackPosition = position;
+            startingDirection = direction;
+        }
+
         // Block presets
         let btnBkgBlock = PINK_CONCRETE
         let nonBtnBkgBlock = BLOCK_OF_QUARTZ
@@ -155,7 +163,7 @@ namespace rollerCoasterBuilder {
         // Button
         builder.move(UP, 1)
         builder.place(blocks.blockWithData(btn, btnAux))
-    
+
         // Minecart
         builder.shift(0, -1, -1)
         player.execute(`summon minecart ${builder.position().toString()}`)
@@ -170,12 +178,40 @@ namespace rollerCoasterBuilder {
     //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbPlaceEndTrack" weight=99
     export function placeTrackEnd() {
-        addRail()
-        builder.move(FORWARD, 1)
-        builder.place(railBase)
-        builder.move(UP, 1)
-        builder.place(railBase)
-        builder.shift(1, -1, 0)
+        if (loopBackPosition) {
+            buildTrackToPosition(loopBackPosition)
+            loopBackPosition = undefined;
+        } else {
+            addRail()
+            builder.move(FORWARD, 1)
+            builder.place(railBase)
+            builder.move(UP, 1)
+            builder.place(railBase)
+            builder.shift(1, -1, 0)
+        }
+    }
+
+    function buildTrackToPosition(destination: Position) {
+        const startPos = builder.position()
+
+        // Need to approach from the direction it started
+
+        // Continue forward until out of bounds of Coaster
+        // Ramp up/down out of bounds until 
+
+        let xOffset = destination.getValue(Axis.X) - startPos.getValue(Axis.X)
+        let yOffset = destination.getValue(Axis.Y) - startPos.getValue(Axis.Y)
+        let zOffset = destination.getValue(Axis.Z) - startPos.getValue(Axis.Z)
+
+        // find out which way the builder is facing
+        builder.move(SixDirection.Forward, 1)
+        
+
+        
+        if (xOffset == 0) {
+
+        }
+
     }
 
     //% block="add straight line of length $length || with $powerLevel power"
