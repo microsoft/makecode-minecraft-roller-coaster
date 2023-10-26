@@ -13,7 +13,7 @@ enum RcbPowerLevel {
     No
 }
 
-//% color="#9C5F9B" block="Roller Coaster Test" icon="\uf3ff"
+//% color="#9C5F9B" block="Roller Coaster" icon="\uf3ff"
 namespace rollerCoasterBuilder {
 
     let _coasterBuilder = new builder.Builder();
