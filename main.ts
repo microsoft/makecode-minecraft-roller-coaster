@@ -276,14 +276,16 @@ namespace rollerCoasterBuilder {
             }
 
             if (heightChange === 0) return; // Error
-            addRamp(verticalDirection, heightChange, 1)
-            totalHeightDiff += heightChange
-
             if (verticalDirection === RcbVerticalDirection.Up) {
-                // Unpower the final rail in the ramp, so it can turn
-                _coasterBuilder.move(BACK, 1)
+                // Build ramp to height - 1, then unpower the final rail in the ramp so it can turn.
+                addRamp(verticalDirection, heightChange - 1, 1)
+                _coasterBuilder.move(UP, 1)
                 addRail()
+            } else {
+                addRamp(verticalDirection, heightChange, 1)
             }
+
+            totalHeightDiff += heightChange
 
             // Turn (unless we're done, in which case allow track to continue straight)
             if (totalHeightDiff != height) {
