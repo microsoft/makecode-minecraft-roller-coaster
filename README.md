@@ -14,6 +14,11 @@ In Minecraft, the player has the ability to place **rails** and **powered rails*
 
 With this extension, you don't have to worry about the specifics of powering and unpowering rails - it handles all of that for you to ensure your roller coaster will never stop in its tracks (unless you want it to)! It will also ensure the roller coaster has enough vertical space to fit the player and will even protect the coaster from water and lava!
 
+## How to ride a Minecart Roller Coaster?
+Once you've created a minecart roller coaster, you're free to ride it! The track should automatically have a minecart at the starting zone, but if you've already ridden it once (or destroyed the minecart) you can always place a new one on the track by adding a minecart to your hotbar, selecting it, and right clicking on the track. Once the minecart is in place, right click to enter it. Then press (right click) the blue button on the pink wall to activate your minecart and begin the ride!
+
+![StartingTheRollerCoaster](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/b97725fe-b931-41f8-bebb-991267f04e49)
+
 ## How to install?
 To begin, start a new project in Microsoft MakeCode for Minecraft Education and select the **Extensions** button in the toolbox.
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/832a523e-c757-4f6f-b170-87460501ef13)
@@ -28,9 +33,10 @@ Now find the Roller Coaster category in your toolbox (postition may vary):
 To build your minecart roller coaster using this extension, you will construct your track segment-by-segment using code. All tracks should start with a [Begin Track](#begin-track) block, then you can append any number of segments, then finish the track with a [Place Track End](#place-track-end) block. You can also use code to customize certain elements of the track, like the base block and power interval.
 
 ### Track Segment Blocks
+These blocks are used to construct the track. Each block adds the specified segment, picking up where the previous block left off.
+
 #### Begin Track
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/053be3ac-3431-48d5-a4f4-2d0423d19889)
-
 
 #### Place Track End
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/ee2a813e-8a54-4167-bf31-2a19075687a7)
@@ -62,19 +68,18 @@ These blocks allow you to change features of your track, like the base block and
 #### Set Base Block
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/819068eb-b003-436b-b55c-50abf9efae71)
 
+This defines the block that will go beneath all of your rails.
+
 #### Set Normal Power Interval
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/1f38bb6b-0a5b-4411-8645-3a4eccf3a0e4)
+
+This block defines how often a *powered rail* is inserted into your track. A smaller interval means you will have powered rails more often, making your roller coaster faster.
 
 #### Water and Lava Protection
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/465446b7-0067-4efc-86e5-2d3676fd521c)
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/77babe3a-3147-4355-9a1b-d02a3144ba9d)
 
-
-## How to ride a Minecart Roller Coaster?
-Once you've created a minecart roller coaster, you're free to ride it! The track should automatically have a minecart at the starting zone, but if you've already ridden it once (or destroyed the minecart) you can always place a new one on the track by adding a minecart to your hotbar, selecting it, and right clicking on the track. Once the minecart is in place, right click to enter it. Then press (right click) the blue button on the pink wall to activate your minecart and begin the ride!
-
-![StartingTheRollerCoaster](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/b97725fe-b931-41f8-bebb-991267f04e49)
-
+These blocks enable or disable the glass barrier that gets constructed when your track goes into water or lava. If the protection is disabled, water and lava may destroy your track, but the build will complete faster.
 
 ## Other
 
