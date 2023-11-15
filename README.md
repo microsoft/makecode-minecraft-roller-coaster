@@ -109,7 +109,9 @@ These blocks enable or disable the glass barrier that gets constructed when your
 ## Other
 
 ### Sample Project
-To view a sample roller coaster project, import this URL: 
+To view a sample roller coaster project, import this URL: https://makecode.com/_J1K7zk4VqVfr  
+
+Run the code and type "Build" into chat ("T" to open) to construct the roller coaster!
 
 ### Tips & Tricks
 1. If the track ends up exiting the "loaded" section of the world while being built, building will not be able to continue. With this in mind, if you are building a large roller coaster and it seems to stop part of the way through building, try following the coaster as it builds. That will ensure the world is always loaded while the building is in progress.
