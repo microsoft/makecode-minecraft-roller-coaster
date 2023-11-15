@@ -25,12 +25,49 @@ Now find the Roller Coaster category in your toolbox (postition may vary):
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/7201a798-e6c8-4847-9ad3-61484b956d16)
 
 ## How does it work?
-To build your minecart roller coaster using this extension, you will construct your track segment-by-segment using code. You can also use code to customize certain elements of the track, like the base block and power interval.
+To build your minecart roller coaster using this extension, you will construct your track segment-by-segment using code. All tracks should start with a [Begin Track](#begin-track) block, then you can append any number of segments, then finish the track with a [Place Track End](#place-track-end) block. You can also use code to customize certain elements of the track, like the base block and power interval.
 
 ### Track Segment Blocks
+#### Begin Track
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/053be3ac-3431-48d5-a4f4-2d0423d19889)
 
+
+#### Place Track End
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/ee2a813e-8a54-4167-bf31-2a19075687a7)
+
+#### Add Straight Line
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/cd0153bc-fc60-43a8-a67a-4f48f957536c)
+
+#### Add Ramp
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/482bfb2d-cc03-48b7-84d7-3f11406971ff)
+
+#### Add Turn
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/2ec3578e-19d2-483e-b474-196ac442cc67)
+
+#### Add Spiral
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/b9edd431-a876-4834-b204-1bd7d5d89e70)
+
+#### Add Free Fall
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/3aad048f-9b44-4502-94e5-217d84906ff1)
+
+#### Add Single Powered Rail
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/911f5db0-1aa7-4a67-8376-243edd8d2f5f)
+
+#### Add Single Rail
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/67449647-f7ab-4e42-accf-e403bbfefbb8)
 
 ### Track Customization Blocks
+These blocks allow you to change features of your track, like the base block and power interval. They will only apply to track segments added after the block runs. They do not apply retroactively.
+
+#### Set Base Block
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/819068eb-b003-436b-b55c-50abf9efae71)
+
+#### Set Normal Power Interval
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/1f38bb6b-0a5b-4411-8645-3a4eccf3a0e4)
+
+#### Water and Lava Protection
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/465446b7-0067-4efc-86e5-2d3676fd521c)
+![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/77babe3a-3147-4355-9a1b-d02a3144ba9d)
 
 
 ## How to ride a Minecart Roller Coaster?
@@ -40,6 +77,10 @@ Once you've created a minecart roller coaster, you're free to ride it! The track
 
 
 ## Other
+
+### Sample Project
+To view a sample roller coaster project, import this URL: 
+
 #### Metadata (used for search, rendering)
 
 * for PXT/minecraft
