@@ -34,8 +34,12 @@ To build your minecart roller coaster using this extension, you will construct y
 
 
 ## How to ride a Minecart Roller Coaster?
-Once you've created a minecart roller coaster, you're free to ride it! The track should automatically have a minecart at the starting zone, but if you've already ridden it once (or destroyed the minecart) you can always place a new one on the track by selecting a minecart in your hotbar and right clicking the track. Once the minecart is in place, right click it to enter it. Then press the blue button on the pink wall to activate your minecart and begin the ride!
+Once you've created a minecart roller coaster, you're free to ride it! The track should automatically have a minecart at the starting zone, but if you've already ridden it once (or destroyed the minecart) you can always place a new one on the track by adding a minecart to your hotbar, selecting it, and right clicking on the track. Once the minecart is in place, right click to enter it. Then press (right click) the blue button on the pink wall to activate your minecart and begin the ride!
 
+![StartingTheRollerCoaster](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/b97725fe-b931-41f8-bebb-991267f04e49)
+
+
+## Other
 #### Metadata (used for search, rendering)
 
 * for PXT/minecraft
