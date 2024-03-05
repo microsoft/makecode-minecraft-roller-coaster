@@ -96,7 +96,6 @@ namespace rollerCoasterBuilder {
     //% block="begin track at $position heading $direction"
     //% position.shadow=minecraftCreatePosition
     //% direction.defl=CompassDirection.North
-    //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbBeginTrack" weight=100
     export function placeTrackStart(position: Position, direction: CompassDirection) {
         // Block presets
@@ -168,9 +167,6 @@ namespace rollerCoasterBuilder {
     }
 
     //% block="place track end"
-    //% position.shadow=minecraftCreatePosition
-    //% direction.defl=CompassDirection.North
-    //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbPlaceEndTrack" weight=99
     export function placeTrackEnd() {
         addRail()
@@ -183,7 +179,7 @@ namespace rollerCoasterBuilder {
 
     //% block="add straight line of length $length || with $powerLevel power"
     //% length.defl=10 length.min=1
-    //% powerLevel.defl=RcBldPowerLevel.Normal
+    //% powerLevel.defl=RcbPowerLevel.Normal
     //% blockId="rcbAddStraightLine" weight=95
     export function addStraightLine(length: number, powerLevel: RcbPowerLevel = RcbPowerLevel.Normal) {
         for (let index = 0; index < length; index++) {
@@ -351,6 +347,7 @@ namespace rollerCoasterBuilder {
     //% group="Customization"
     //% block="set base block to $blockType"
     //% blockType.shadow=minecraftBlock
+    //% blockType.defl=PLANKS_OAK
     //% blockId="rcbSetBaseBlock" weight=20
     export function setRollerCoasterBaseBlock(blockType: number) {
         railBase = blockType
