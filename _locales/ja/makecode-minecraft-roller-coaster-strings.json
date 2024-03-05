@@ -1,0 +1,23 @@
+{
+    "RcbVerticalDirection.Up|block": "上り",
+    "RcbVerticalDirection.Down|block": "下り",
+    "RcbPowerLevel.Full|block": "全て使う",
+    "RcbPowerLevel.Normal|block": "普通に使う",
+    "RcbPowerLevel.No|block": "使わない",
+    "rollerCoasterBuilder.addFreeFall|block": "高さ$heightの垂直落下を追加する",
+    "rollerCoasterBuilder.addPoweredRail|block": "パワードレールを１つ追加する",
+    "rollerCoasterBuilder.addRail|block": "レールを１つ追加する",
+    "rollerCoasterBuilder.addRamp|block": "長さ$distanceの$direction坂を追加する||前に$horizSpace進んだら１ブロック高さが変わる",
+    "rollerCoasterBuilder.addSpiral|block": "$turnDirection回り|幅$width|高さ$heightの|$verticalDirectionの螺旋を追加する",
+    "rollerCoasterBuilder.addStraightLine|block": "長さ$lengthの直線を追加する||パワードレールを$powerLevel",
+    "rollerCoasterBuilder.addTurn|block": "$direction向きの曲がり角を追加する",
+    "rollerCoasterBuilder.placeTrackEnd|block": "ジェットコースターを終わる",
+    "rollerCoasterBuilder.placeTrackStart|block": "$positionに$direction向きにジェットコースターを始める",
+    "rollerCoasterBuilder.setLavaProtection|block": "溶岩からの保護を$valueに設定する",
+    "rollerCoasterBuilder.setRollerCoasterBaseBlock|block": "土台となるブロックを$blockTypeに設定する",
+    "rollerCoasterBuilder.setNormalPowerInterval|block": "パワードレールの普通の間隔を$intervalに設定する",
+    "rollerCoasterBuilder.setWaterProtection|block": "水からの保護を$valueに設定する",
+    "rollerCoasterBuilder|block": "ジェットコースタービルダー",
+    "{id:category}Roller Coaster": "ジェットコースター",
+    "{id:group}Customization": "カスタム設定"
+}

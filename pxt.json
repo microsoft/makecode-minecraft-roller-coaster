@@ -9,7 +9,8 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "_locales/ja/makecode-minecraft-roller-coaster-strings.json"
     ],
     "testFiles": [
         "test.ts"
