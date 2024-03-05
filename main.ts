@@ -347,7 +347,7 @@ namespace rollerCoasterBuilder {
     //% group="Customization"
     //% block="set base block to $blockType"
     //% blockType.shadow=minecraftBlock
-    //% blockType.defl=Block.PLANKS_OAK
+    //% blockType.defl=Block.PlanksOak
     //% blockId="rcbSetBaseBlock" weight=20
     export function setRollerCoasterBaseBlock(blockType: number) {
         railBase = blockType
