@@ -262,6 +262,7 @@ namespace rollerCoasterBuilder {
     //% block="add spiral going $verticalDirection turning $turnDirection with width $width and height $height"
     //% width.min=3 width.defl=3
     //% height.min=1 height.defl=10
+    //% inlineInputMode=inline
     //% blockId="rcbAddSpiral" weight=80
     export function addSpiral(verticalDirection: RcbVerticalDirection, turnDirection: TurnDirection, height: number = 10, width: number = 3) {
         let totalHeightDiff = 0
