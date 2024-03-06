@@ -1,5 +1,5 @@
 {
-    "name": "Roller Coaster Builder",
+    "name": "makecode-minecraft-roller-coaster",
     "version": "1.0.2",
     "description": "Build minecart roller coasters using code, then ride them!",
     "dependencies": {
@@ -9,7 +9,8 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "_locales/ja/makecode-minecraft-roller-coaster-strings.json"
     ],
     "testFiles": [
         "test.ts"
