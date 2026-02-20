@@ -27,12 +27,14 @@ namespace rollerCoasterBuilder {
 
     //% block="add single rail to track"
     //% blockId="rcbAddRail" weight=65
+    //% help=github:makecode-minecraft-roller-coaster/docs/add-rail
     export function addRail() {
         placeRailInternal(_coasterBuilder.position(), railBase, RAIL)
     }
 
     //% block="add single powered rail to track"
     //% blockId="rcbAddPoweredRail" weight=70
+    //% help=github:makecode-minecraft-roller-coaster/docs/add-powered-rail
     export function addPoweredRail() {
         placeRailInternal(_coasterBuilder.position(), REDSTONE_BLOCK, POWERED_RAIL)
     }
@@ -98,6 +100,7 @@ namespace rollerCoasterBuilder {
     //% direction.defl=CompassDirection.North
     //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbBeginTrack" weight=100
+    //% help=github:makecode-minecraft-roller-coaster/docs/place-track-start
     export function placeTrackStart(position: Position, direction: CompassDirection) {
         // Block presets
         let btnBkgBlock = PINK_CONCRETE
@@ -172,6 +175,7 @@ namespace rollerCoasterBuilder {
     //% direction.defl=CompassDirection.North
     //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbPlaceEndTrack" weight=99
+    //% help=github:makecode-minecraft-roller-coaster/docs/place-track-end
     export function placeTrackEnd() {
         addRail()
         _coasterBuilder.move(FORWARD, 1)
@@ -185,6 +189,7 @@ namespace rollerCoasterBuilder {
     //% length.defl=10 length.min=1
     //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbAddStraightLine" weight=95
+    //% help=github:makecode-minecraft-roller-coaster/docs/add-straight-line
     export function addStraightLine(length: number, powerLevel: RcbPowerLevel = RcbPowerLevel.Normal) {
         for (let index = 0; index < length; index++) {
             if (powerLevel !== RcbPowerLevel.No && index % powerInterval === 0) {
@@ -203,6 +208,7 @@ namespace rollerCoasterBuilder {
     //% horizSpace.defl=1
     //% horizSpace.min=1
     //% blockId="rcbAddRamp" weight=90
+    //% help=github:makecode-minecraft-roller-coaster/docs/add-ramp
     export function addRamp(direction: RcbVerticalDirection, distance: number, horizSpace: number = 1) {
         if (direction === RcbVerticalDirection.Up) {
             rampUp(distance, horizSpace);
@@ -267,6 +273,7 @@ namespace rollerCoasterBuilder {
     //% width.min=3 width.defl=3
     //% height.min=1 height.defl=10
     //% blockId="rcbAddSpiral" weight=80
+    //% help=github:makecode-minecraft-roller-coaster/docs/add-spiral
     export function addSpiral(verticalDirection: RcbVerticalDirection, turnDirection: TurnDirection, height: number = 10, width: number = 3) {
         let totalHeightDiff = 0
         while (totalHeightDiff < height) {
@@ -301,6 +308,7 @@ namespace rollerCoasterBuilder {
     //% block="add free fall of height $height"
     //% height.min=4 height.max=384 height.defl=10
     //% blockId="rcbAddFreeFall" weight=75
+    //% help=github:makecode-minecraft-roller-coaster/docs/add-free-fall
     export function addFreeFall(height: number) {
         // Clear out free-fall area
         let startPos = _coasterBuilder.position()
@@ -352,6 +360,7 @@ namespace rollerCoasterBuilder {
     //% block="set base block to $blockType"
     //% blockType.shadow=minecraftBlock
     //% blockId="rcbSetBaseBlock" weight=20
+    //% help=github:makecode-minecraft-roller-coaster/docs/set-roller-coaster-base-block
     export function setRollerCoasterBaseBlock(blockType: number) {
         railBase = blockType
     }
@@ -360,6 +369,7 @@ namespace rollerCoasterBuilder {
     //% block="set normal power interval to $interval"
     //% interval.defl=5 interval.min=1 interval.max=8
     //% blockId="rcbSetPowerInterval" weight=19
+    //% help=github:makecode-minecraft-roller-coaster/docs/set-normal-power-interval
     export function setNormalPowerInterval(interval: number = 5) {
         powerInterval = interval
     }
@@ -368,6 +378,7 @@ namespace rollerCoasterBuilder {
     //% block="set water protection to $value"
     //% value.defl=true
     //% blockId="rcbSetWaterProtection" weight=18
+    //% help=github:makecode-minecraft-roller-coaster/docs/set-water-protection
     export function setWaterProtection(value: boolean) {
         waterProtection = value
     }
@@ -376,6 +387,7 @@ namespace rollerCoasterBuilder {
     //% block="set lava protection to $value"
     //% value.defl=true
     //% blockId="rcbSetLavaProtection" weight=17
+    //% help=github:makecode-minecraft-roller-coaster/docs/set-lava-protection
     export function setLavaProtection(value: boolean) {
         lavaProtection = value
     }
