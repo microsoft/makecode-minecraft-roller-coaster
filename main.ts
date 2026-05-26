@@ -206,8 +206,10 @@ namespace rollerCoasterBuilder {
                 return CardinalDirection.North
             case CardinalDirection.East:
                 return CardinalDirection.West
-            default:
+            case CardinalDirection.West:
                 return CardinalDirection.East
+            default:
+                return CardinalDirection.North
         }
     }
 
@@ -249,7 +251,7 @@ namespace rollerCoasterBuilder {
             }
         }
 
-        let verticalStepDirection = deltaY >= 0 ? CardinalDirection.Up : CardinalDirection.Down
+        let verticalDirection = deltaY >= 0 ? CardinalDirection.Up : CardinalDirection.Down
         let verticalStepsRemaining = Math.abs(deltaY)
         let poweredRailsPlaced = 0
 
@@ -263,7 +265,7 @@ namespace rollerCoasterBuilder {
 
             currentPos = currentPos.move(steps[i], 1)
             if (verticalStepsRemaining > 0) {
-                currentPos = currentPos.move(verticalStepDirection, 1)
+                currentPos = currentPos.move(verticalDirection, 1)
                 verticalStepsRemaining--
             }
         }
