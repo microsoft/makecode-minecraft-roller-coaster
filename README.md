@@ -32,7 +32,7 @@ Now find the Roller Coaster category in your toolbox (postition may vary):
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/7201a798-e6c8-4847-9ad3-61484b956d16)
 
 ## Block Help
-To build your minecart roller coaster using this extension, you will construct your track segment-by-segment using code. All tracks should start with a [Begin Track](#begin-track) block, then you can append any number of segments, then finish the track with a [Place Track End](#place-track-end) block. You can also use code to customize certain elements of the track, like the [base block](#set-base-block) and [power interval](#set-normal-power-interval).
+To build your minecart roller coaster using this extension, you will construct your track segment-by-segment using code. All tracks should start with a [Begin Track](#begin-track) block, then you can append any number of segments, then finish the track with either a [Place Track End](#place-track-end) block or [Close Loop](#close-loop) block. You can also use code to customize certain elements of the track, like the [base block](#set-base-block) and [power interval](#set-normal-power-interval).
 
 ### Track Segment Blocks
 These blocks are used to construct the track. Each block adds the specified segment, picking up where the previous block left off.
@@ -46,6 +46,10 @@ This block constructs a starting zone for your roller coaster, including a small
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/ee2a813e-8a54-4167-bf31-2a19075687a7)
 
 This block places a final stopping area for your roller coaster, which will bring the minecart to a halt.
+
+#### Close Loop
+
+This block automatically connects the current end of your track back to the most recently created track start point, creating a continuous loop.
 
 #### Add Straight Line
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/cd0153bc-fc60-43a8-a67a-4f48f957536c)  
