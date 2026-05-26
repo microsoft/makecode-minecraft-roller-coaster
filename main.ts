@@ -237,7 +237,11 @@ namespace rollerCoasterBuilder {
 
         if (Math.abs(deltaY) > steps.length) {
             const verticalDeficit = Math.abs(deltaY) - steps.length
-            const detourDirection = xSteps > 0 ? xDirection : zDirection
+            // If vertical distance is larger than available horizontal path length,
+            // add a short out-and-back detour so the rails can keep climbing/descending.
+            const detourDirection = xSteps > 0
+                ? xDirection
+                : (zSteps > 0 ? zDirection : CardinalDirection.East)
             const returnDirection = getOppositeDirection(detourDirection)
             for (let i = 0; i < Math.ceil(verticalDeficit / 2); i++) {
                 steps.push(detourDirection)
