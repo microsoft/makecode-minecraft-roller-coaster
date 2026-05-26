@@ -20,6 +20,10 @@ namespace rollerCoasterBuilder {
 
     let railBase = PLANKS_OAK
     let powerInterval = 5 // Keep between 1 and 8, else minecarts may stop between power
+    let trackStartX = 0
+    let trackStartY = 0
+    let trackStartZ = 0
+    let hasTrackStart = false
 
     // Can be disabled for perf.
     let waterProtection = true
@@ -165,6 +169,11 @@ namespace rollerCoasterBuilder {
 
         // Set builder location for next piece of track
         _coasterBuilder.shift(3, -1, 0)
+
+        trackStartX = _coasterBuilder.position().getValue(Axis.X)
+        trackStartY = _coasterBuilder.position().getValue(Axis.Y)
+        trackStartZ = _coasterBuilder.position().getValue(Axis.Z)
+        hasTrackStart = true
     }
 
     //% block="place track end"
@@ -179,6 +188,84 @@ namespace rollerCoasterBuilder {
         _coasterBuilder.move(UP, 1)
         _coasterBuilder.place(railBase)
         _coasterBuilder.shift(1, -1, 0)
+    }
+
+    function getDirectionForDeltaX(deltaX: number): CardinalDirection {
+        return deltaX >= 0 ? CardinalDirection.East : CardinalDirection.West
+    }
+
+    function getDirectionForDeltaZ(deltaZ: number): CardinalDirection {
+        return deltaZ >= 0 ? CardinalDirection.South : CardinalDirection.North
+    }
+
+    function getOppositeDirection(direction: CardinalDirection): CardinalDirection {
+        switch (direction) {
+            case CardinalDirection.North:
+                return CardinalDirection.South
+            case CardinalDirection.South:
+                return CardinalDirection.North
+            case CardinalDirection.East:
+                return CardinalDirection.West
+            default:
+                return CardinalDirection.East
+        }
+    }
+
+    //% block="close loop to track start"
+    //% blockId="rcbCloseTrackLoop" weight=98
+    export function closeTrackLoop() {
+        if (!hasTrackStart) return
+
+        let currentPos = _coasterBuilder.position()
+        let deltaX = trackStartX - currentPos.getValue(Axis.X)
+        let deltaY = trackStartY - currentPos.getValue(Axis.Y)
+        let deltaZ = trackStartZ - currentPos.getValue(Axis.Z)
+        let xSteps = Math.abs(deltaX)
+        let zSteps = Math.abs(deltaZ)
+
+        let steps: CardinalDirection[] = []
+        const xDirection = getDirectionForDeltaX(deltaX)
+        const zDirection = getDirectionForDeltaZ(deltaZ)
+
+        if (xSteps >= zSteps) {
+            for (let i = 0; i < xSteps; i++) steps.push(xDirection)
+            for (let i = 0; i < zSteps; i++) steps.push(zDirection)
+        } else {
+            for (let i = 0; i < zSteps; i++) steps.push(zDirection)
+            for (let i = 0; i < xSteps; i++) steps.push(xDirection)
+        }
+
+        if (Math.abs(deltaY) > steps.length) {
+            const verticalDeficit = Math.abs(deltaY) - steps.length
+            const detourDirection = xSteps > 0 ? xDirection : zDirection
+            const returnDirection = getOppositeDirection(detourDirection)
+            for (let i = 0; i < Math.ceil(verticalDeficit / 2); i++) {
+                steps.push(detourDirection)
+                steps.push(returnDirection)
+            }
+        }
+
+        let verticalStepDirection = deltaY >= 0 ? CardinalDirection.Up : CardinalDirection.Down
+        let verticalStepsRemaining = Math.abs(deltaY)
+        let poweredRailsPlaced = 0
+
+        for (let i = 0; i < steps.length; i++) {
+            if (poweredRailsPlaced % powerInterval === 0) {
+                placeRailInternal(currentPos, REDSTONE_BLOCK, POWERED_RAIL)
+            } else {
+                placeRailInternal(currentPos, railBase, RAIL)
+            }
+            poweredRailsPlaced++
+
+            currentPos = currentPos.move(steps[i], 1)
+            if (verticalStepsRemaining > 0) {
+                currentPos = currentPos.move(verticalStepDirection, 1)
+                verticalStepsRemaining--
+            }
+        }
+
+        placeRailInternal(currentPos, railBase, RAIL)
+        _coasterBuilder.teleportTo(currentPos)
     }
 
     //% block="add straight line of length $length || with $powerLevel power"
