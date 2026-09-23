@@ -43,9 +43,14 @@ These blocks are used to construct the track. Each block adds the specified segm
 This block constructs a starting zone for your roller coaster, including a small backing wall, a minecart, and a "launch button". All tracks should start with this block.
 
 #### Place Track End
+
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/ee2a813e-8a54-4167-bf31-2a19075687a7)
 
 This block places a final stopping area for your roller coaster, which will bring the minecart to a halt.
+
+#### On End
+
+This event runs when a player riding in a minecart reaches any track end created by the [Place Track End](#place-track-end) block. Use it to reset the minecart or start another action.
 
 #### Add Straight Line
 ![image](https://github.com/microsoft/makecode-minecraft-roller-coaster/assets/69657545/cd0153bc-fc60-43a8-a67a-4f48f957536c)  

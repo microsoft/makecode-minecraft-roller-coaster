@@ -20,6 +20,9 @@ namespace rollerCoasterBuilder {
 
     let railBase = PLANKS_OAK
     let powerInterval = 5 // Keep between 1 and 8, else minecarts may stop between power
+    let trackEnds: Position[] = []
+    let trackEndHandler: () => void
+    let trackEndEventRegistered = false
 
     // Can be disabled for perf.
     let waterProtection = true
@@ -173,12 +176,42 @@ namespace rollerCoasterBuilder {
     //% powerLevel.defl=RcBldPowerLevel.Normal
     //% blockId="rcbPlaceEndTrack" weight=99
     export function placeTrackEnd() {
+        trackEnds.push(_coasterBuilder.position())
         addRail()
         _coasterBuilder.move(FORWARD, 1)
         _coasterBuilder.place(railBase)
         _coasterBuilder.move(UP, 1)
         _coasterBuilder.place(railBase)
         _coasterBuilder.shift(1, -1, 0)
+    }
+
+    function isAtTrackEnd(position: Position) {
+        let playerPosition = player.position()
+        let playerX = playerPosition.getValue(Axis.X)
+        let playerY = playerPosition.getValue(Axis.Y)
+        let playerZ = playerPosition.getValue(Axis.Z)
+
+        return Math.abs(playerX - position.getValue(Axis.X)) <= 1
+            && playerY >= position.getValue(Axis.Y)
+            && playerY <= position.getValue(Axis.Y) + 3
+            && Math.abs(playerZ - position.getValue(Axis.Z)) <= 1
+    }
+
+    //% block="on end"
+    //% blockId="rcbOnTrackEnd" weight=15
+    export function onEnd(handler: () => void) {
+        trackEndHandler = handler
+        if (!trackEndEventRegistered) {
+            trackEndEventRegistered = true
+            player.onTravelled(TravelMethod.Riding, () => {
+                for (let end of trackEnds) {
+                    if (isAtTrackEnd(end)) {
+                        trackEndHandler()
+                        break
+                    }
+                }
+            })
+        }
     }
 
     //% block="add straight line of length $length || with $powerLevel power"
