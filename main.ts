@@ -56,10 +56,30 @@ namespace rollerCoasterBuilder {
         if (waterProtection) {
             blocks.replace(GLASS, 9, cornerOne, cornerTwo) // 9 == also water?
             blocks.replace(GLASS, WATER, cornerOne, cornerTwo)
+            replaceWaterloggedBlocks(cornerOne, cornerTwo)
         }
         if (lavaProtection) {
             blocks.replace(GLASS, 11, cornerOne, cornerTwo) // 11 == also lava?
             blocks.replace(GLASS, LAVA, cornerOne, cornerTwo)
+        }
+    }
+
+    function replaceWaterloggedBlocks(cornerOne: Position, cornerTwo: Position) {
+        const waterloggableBlocks = [
+            "oak_stairs", "spruce_stairs", "birch_stairs", "jungle_stairs", "acacia_stairs", "dark_oak_stairs",
+            "oak_slab", "spruce_slab", "birch_slab", "jungle_slab", "acacia_slab", "dark_oak_slab",
+            "oak_fence", "spruce_fence", "birch_fence", "jungle_fence", "acacia_fence", "dark_oak_fence",
+            "oak_fence_gate", "spruce_fence_gate", "birch_fence_gate", "jungle_fence_gate", "acacia_fence_gate", "dark_oak_fence_gate",
+            "oak_trapdoor", "spruce_trapdoor", "birch_trapdoor", "jungle_trapdoor", "acacia_trapdoor", "dark_oak_trapdoor",
+            "oak_sign", "spruce_sign", "birch_sign", "jungle_sign", "acacia_sign", "dark_oak_sign",
+            "iron_bars", "glass_pane", "ladder", "chain",
+            "cobblestone_wall", "mossy_cobblestone_wall", "brick_wall", "prismarine_wall", "red_sandstone_wall",
+            "sandstone_wall", "nether_brick_wall", "end_stone_brick_wall", "blackstone_wall",
+            "polished_blackstone_wall", "polished_blackstone_brick_wall"
+        ]
+
+        for (const blockName of waterloggableBlocks) {
+            blocks.replace(GLASS, blocks.blockByName(blockName), cornerOne, cornerTwo)
         }
     }
 
